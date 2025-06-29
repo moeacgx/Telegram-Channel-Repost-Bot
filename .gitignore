@@ -1,0 +1,33 @@
+# 数据文件
+data/
+logs/
+
+# 编译文件
+*.exe
+bot
+main
+
+# 配置文件
+configs/config.yaml
+
+# 调试和测试文件
+debug_*
+test_*
+check_*
+fix_*
+*.sql
+
+# IDE 文件
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 临时文件
+*.tmp
+*.temp
+
