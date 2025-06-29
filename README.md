@@ -12,8 +12,8 @@
 [功能特性](#-功能特性) • [快速开始](#-快速开始) • [使用指南](#-使用指南) 
 
 ###  联系我们
-- 💬 **站长交流群**: [https://t.me/vpsbbq](https://t.me/vpsbbq)
-- 📦 **站长仓库**: [https://t.me/zhanzhangck](https://t.me/zhanzhangck)
+ 💬 **站长交流群**: [https://t.me/vpsbbq](https://t.me/vpsbbq)
+ 📦 **站长仓库**: [https://t.me/zhanzhangck](https://t.me/zhanzhangck)
 
 </div>
 
