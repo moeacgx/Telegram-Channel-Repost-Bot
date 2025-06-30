@@ -80,8 +80,8 @@
 
 ### 1️⃣ 克隆项目
 ```bash
-git clone https://github.com/moeacgx/tg-channel-repost-bot.git
-cd tg-channel-repost-bot
+git clone https://github.com/moeacgx/Telegram-Channel-Repost-Bot.git
+cd Telegram-Channel-Repost-Bot
 ```
 
 ### 2️⃣ 安装依赖
