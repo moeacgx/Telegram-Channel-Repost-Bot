@@ -139,7 +139,7 @@ go build -o bot cmd/server/main.go
 ### 🎯 基础操作
 
 #### 1️⃣ 启动Bot
-运行程序后，在Telegram中找到你的Bot并发送 `/start` 命令。
+运行程序后，邀请机器人到进群给管理权限，然后在Telegram中找到你的Bot并发送 `/start` 命令。
 
 #### 2️⃣ 创建频道组
 1. 点击 "📋 管理频道组"
@@ -268,10 +268,10 @@ gopkg.in/yaml.v2
 
 ### 📋 开发环境设置
 1. 安装Go 1.20或更高版本
-2. 安装SQLite3
-3. Fork并克隆项目
-4. 安装依赖：`go mod tidy`
-5. 配置Bot Token
+2. Fork并克隆项目
+3. 安装依赖：`go mod tidy`
+4. 配置Bot Token
+5. 邀请机器人到进群给管理权限
 6. 运行测试：`go test ./...`
 
 ### 🔄 贡献流程
