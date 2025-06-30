@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Go](https://img.shields.io/badge/Go-1.19+-00ADD8?style=for-the-badge&logo=go&logoColor=white)
+![Go](https://img.shields.io/badge/Go-1.20+-00ADD8?style=for-the-badge&logo=go&logoColor=white)
 ![Telegram](https://img.shields.io/badge/Telegram-Bot-26A5E4?style=for-the-badge&logo=telegram&logoColor=white)
 ![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
@@ -13,7 +13,7 @@
 
 ###  联系我们
  💬 **站长交流群**: [https://t.me/vpsbbq](https://t.me/vpsbbq)
- 
+
  📦 **站长仓库**: [https://t.me/zhanzhangck](https://t.me/zhanzhangck)
 
 </div>
@@ -248,7 +248,7 @@ go build -o bot cmd/server/main.go
 ## 🔧 技术栈
 
 ### 🛠️ 核心技术
-- **语言**: Go 1.19+
+- **语言**: Go 1.20+
 - **数据库**: SQLite3
 - **Bot框架**: go-telegram-bot-api/v5
 - **配置**: YAML
