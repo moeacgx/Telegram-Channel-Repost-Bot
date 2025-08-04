@@ -2,19 +2,18 @@
 
 <div align="center">
 
-![Go](https://img.shields.io/badge/Go-1.20+-00ADD8?style=for-the-badge&logo=go&logoColor=white)
+![Go](https://img.shields.io/badge/Go-1.19+-00ADD8?style=for-the-badge&logo=go&logoColor=white)
 ![Telegram](https://img.shields.io/badge/Telegram-Bot-26A5E4?style=for-the-badge&logo=telegram&logoColor=white)
 ![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
 **一个功能强大的Telegram频道管理机器人，支持定时重发、无引用转发、批量管理等高级功能**
 
-[功能特性](#-功能特性) • [快速开始](#-快速开始) • [使用指南](#-使用指南) 
+[功能特性](#-功能特性) • [快速开始](#-快速开始) • [使用指南](#-使用指南) • [配置说明](#-配置说明)
 
 ###  联系我们
- 💬 **站长交流群**: [https://t.me/vpsbbq](https://t.me/vpsbbq)
-
- 📦 **站长仓库**: [https://t.me/zhanzhangck](https://t.me/zhanzhangck)
+- 💬 **站长交流群**: [https://t.me/vpsbbq](https://t.me/vpsbbq)
+- 📦 **站长仓库**: [https://t.me/zhanzhangck](https://t.me/zhanzhangck)
 
 </div>
 
@@ -25,8 +24,6 @@
 ### 🎯 核心功能
 - 🏗️ **频道组管理** - 创建和管理频道组，每个频道组可以包含多个频道
 - ⏰ **定时重发** - 自动定时重发消息，智能删除上次发送的消息避免重复
-  - 🔄 **频率模式** - 按固定间隔（分钟）自动重发
-  - 🕐 **时间点模式** - 在指定时间点（如 08:00, 12:00, 18:00）自动发送
 - 📤 **手动推送** - 支持手动推送消息到指定频道组
 - 🗑️ **消息删除** - 支持删除整个频道组的已发送消息
 - ⚡ **立即重发** - 支持手动触发立即重发定时内容
@@ -53,35 +50,31 @@
 📦 tg-channel-repost-bot
 ├── 📂 cmd/
 │   └── 📂 server/          # 🚀 主程序入口
-│       └── main.go         # 程序启动文件
-├── 📂 configs/             # 📝 配置文件目录
-│   └── config.yaml         # 主配置文件
-├── 📂 data/                # 📁 数据目录 (运行时创建)
-│   └── bot.db              # 🗄️ SQLite 数据库文件
-├── 📂 internal/            # 🔒 内部包 (不对外暴露)
+├── 📂 internal/
 │   ├── 📂 bot/            # 🤖 Telegram Bot 处理逻辑
 │   ├── 📂 database/       # 🗄️ 数据库连接和操作
-│   ├── 📂 models/         # 📋 数据模型定义
-│   ├── 📂 scheduler/      # ⏰ 定时任务调度器
-│   └── 📂 services/       # ⚙️ 业务逻辑服务
-├── 📂 pkg/                # � 可复用的公共包
+│   ├── 📂 models/         # 📋 数据模型
+│   ├── 📂 services/       # ⚙️ 业务逻辑服务
+│   ├── 📂 handlers/       # 🔧 请求处理器
+│   └── 📂 scheduler/      # ⏰ 定时任务调度器
+├── 📂 pkg/
 │   └── 📂 config/         # ⚙️ 配置管理
-├── � go.mod              # Go 模块定义
-├── 📄 go.sum              # Go 依赖锁定
-├── � README.md           # 项目说明文档
+├── 📂 configs/            # 📝 配置文件
+├── 📂 migrations/         # 🔄 数据库迁移
+└── 📂 docs/              # 📚 文档
 ```
 
 ## 🚀 快速开始
 
 ### 📋 前置要求
-- Go 1.20+
+- Go 1.19+
 - SQLite3
 - Telegram Bot Token
 
 ### 1️⃣ 克隆项目
 ```bash
-git clone https://github.com/moeacgx/Telegram-Channel-Repost-Bot.git
-cd Telegram-Channel-Repost-Bot
+git clone https://github.com/your-username/tg-channel-repost-bot.git
+cd tg-channel-repost-bot
 ```
 
 ### 2️⃣ 安装依赖
@@ -139,7 +132,7 @@ go build -o bot cmd/server/main.go
 ### 🎯 基础操作
 
 #### 1️⃣ 启动Bot
-运行程序后，邀请机器人到进群给管理权限，然后在Telegram中找到你的Bot并发送 `/start` 命令。
+运行程序后，在Telegram中找到你的Bot并发送 `/start` 命令。
 
 #### 2️⃣ 创建频道组
 1. 点击 "📋 管理频道组"
@@ -183,37 +176,6 @@ go build -o bot cmd/server/main.go
 2. 选择频道组
 3. 删除该组在所有频道的最新消息
 
-#### ⏰ 定时模式设置
-**频率模式**：
-- 设置固定间隔（分钟）自动重发
-- 适合需要持续推送的内容
-
-**时间点模式**：
-1. 点击频道组 → "✏️ 编辑" → "⏰ 定时设置"
-2. 选择 "🕐 时间点模式"
-3. 点击 "🕐 编辑时间点"
-4. 输入发送时间点，每行一个，格式为 HH:MM：
-   ```
-   08:00
-   12:00
-   18:00
-   22:00
-   ```
-5. 系统将在每天的指定时间点自动发送
-6. 每个时间点每天只发送一次，避免重复
-
-## 📋 TODO List
-
-### 🚀 计划中的功能
-- [ ] **频道组批量添加管理员** - 为频道组中的所有频道批量添加指定用户为管理员
-- [ ] **消息统计增强** - 更详细的发送统计和分析功能
-- [ ] **定时任务管理** - 可视化管理所有定时任务
-- [ ] **消息模板库** - 支持保存和复用多个消息模板
-- [ ] **频道健康检查** - 自动检测频道状态和权限
-- [ ] **批量操作优化** - 提升大量频道操作的性能
-- [ ] **Web管理界面** - 提供Web端管理界面
-- [ ] **API接口** - 提供RESTful API供第三方集成
-
 ### 📊 管理功能
 
 #### 📈 查看记录
@@ -232,23 +194,16 @@ go build -o bot cmd/server/main.go
 
 | 表名 | 说明 | 主要字段 |
 |------|------|----------|
-| `channel_groups` | 频道组信息 | id, name, description, message_id, frequency, schedule_mode, schedule_timepoints, is_active, auto_pin |
-| `channels` | 频道信息 | id, channel_id, channel_name, group_id, last_message_id, is_active |
-| `message_templates` | 消息模板 | id, title, content, message_type, media_url, buttons, entities |
-| `send_records` | 发送记录 | id, group_id, channel_id, message_id, message_type, status, error_message, retry_count, scheduled_at, sent_at |
-| `retry_configs` | 重试配置 | id, group_id, max_retries, retry_interval, time_range_start, time_range_end |
-
-### 📋 重要字段说明
-- **schedule_mode**: 定时模式 (`frequency` 频率模式 / `timepoints` 时间点模式)
-- **schedule_timepoints**: 时间点配置 (JSON格式，如 `[{"hour":8,"minute":0},{"hour":20,"minute":0}]`)
-- **auto_pin**: 自动置顶功能开关
-- **message_type**: 消息类型 (`text` 文本 / `photo` 图片 / `video` 视频 / `media_group` 媒体组)
-- **entities**: 消息实体信息 (保留超链接、格式等)
+| `channel_groups` | 频道组信息 | id, name, description, frequency |
+| `channels` | 频道信息 | id, channel_id, group_id, is_active |
+| `message_templates` | 消息模板 | id, group_id, content, message_type |
+| `send_records` | 发送记录 | id, group_id, status, sent_at |
+| `retry_configs` | 重试配置 | id, max_attempts, retry_interval |
 
 ## 🔧 技术栈
 
 ### 🛠️ 核心技术
-- **语言**: Go 1.20+
+- **语言**: Go 1.19+
 - **数据库**: SQLite3
 - **Bot框架**: go-telegram-bot-api/v5
 - **配置**: YAML
@@ -261,18 +216,38 @@ github.com/mattn/go-sqlite3
 gopkg.in/yaml.v2
 ```
 
+## 🚀 部署说明
 
+### 🐳 Docker部署
+```bash
+# 构建镜像
+docker build -t tg-repost-bot .
 
+# 运行容器
+docker run -d \
+  --name tg-repost-bot \
+  -v $(pwd)/configs:/app/configs \
+  -v $(pwd)/data:/app/data \
+  tg-repost-bot
+```
+
+### 🖥️ 系统服务
+```bash
+# 创建systemd服务
+sudo cp tg-repost-bot.service /etc/systemd/system/
+sudo systemctl enable tg-repost-bot
+sudo systemctl start tg-repost-bot
+```
 
 ## 🤝 贡献指南
 
 ### 📋 开发环境设置
-1. 安装Go 1.20或更高版本
-2. 克隆项目
-3. 安装依赖：`go mod tidy`
-4. 配置Bot Token
-5. 邀请机器人到进群给管理权限
-6. 运行测试：`go run ./...`
+1. 安装Go 1.19或更高版本
+2. 安装SQLite3
+3. Fork并克隆项目
+4. 安装依赖：`go mod tidy`
+5. 配置Bot Token
+6. 运行测试：`go test ./...`
 
 ### 🔄 贡献流程
 1. 🍴 Fork项目
@@ -287,9 +262,7 @@ gopkg.in/yaml.v2
 - 编写单元测试
 - 确保所有测试通过
 
-
-
-## �📄 许可证
+## 📄 许可证
 
 本项目采用MIT许可证。详见 [LICENSE](LICENSE) 文件。
 
