@@ -16,7 +16,7 @@
 - 📦 **站长仓库**: [https://t.me/zhanzhangck](https://t.me/zhanzhangck)
 
 </div>
-
+请等待重构！目前某些功能不符合逻辑！！
 ---
 
 ## ✨ 功能特性
